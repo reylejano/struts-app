@@ -24,7 +24,7 @@ spec:
       - name: struts
         image: reyl/struts:0.1
         ports:
-        - containerPort: 80
+        - containerPort: 8080
 ---
 apiVersion: v1
 kind: Service
