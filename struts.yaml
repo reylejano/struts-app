@@ -20,7 +20,7 @@ spec:
           values:
           - struts
       topologyKey: "kubernetes.io/hostname"
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: struts
@@ -65,7 +65,7 @@ spec:
     kind: Deployment
     name: struts
   minReplicas: 1
-  maxReplicas: 5
+  maxReplicas: 3
   metrics:
   - type: Resource
     resource:
