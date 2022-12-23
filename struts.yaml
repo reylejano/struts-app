@@ -11,15 +11,15 @@ metadata:
   labels:
     app: struts
 spec:
-  podAntiAffinity:
-    requiredDuringSchedulingIgnoredDuringExecution:
-    - labelSelector:
-        matchExpressions:
-        - key: app
-          operator: In
-          values:
-          - struts
-      topologyKey: "kubernetes.io/hostname"
+  #podAntiAffinity:
+    #requiredDuringSchedulingIgnoredDuringExecution:
+   # - labelSelector:
+    #    matchExpressions:
+   #     - key: app
+  #        operator: In
+ #         values:
+ #         - struts
+#      topologyKey: "kubernetes.io/hostname"
   replicas: 1
   selector:
     matchLabels:
@@ -34,11 +34,11 @@ spec:
         image: reyl/struts:0.1
         ports:
         - containerPort: 8080
-        resources:
-          limits:
-            cpu: 500m
-          requests:
-            cpu: 10m
+#        resources:
+#          limits:
+#            cpu: 500m
+#          requests:
+#            cpu: 10m
 ---
 apiVersion: v1
 kind: Service
@@ -54,22 +54,22 @@ spec:
       port: 8080
       targetPort: 8080
 ---
-apiVersion: autoscaling/v2
-kind: HorizontalPodAutoscaler
-metadata:
-  name: struts
-  namespace: struts
-spec:
-  scaleTargetRef:
-    apiVersion: apps/v1
-    kind: Deployment
-    name: struts
-  minReplicas: 1
-  maxReplicas: 3
-  metrics:
-  - type: Resource
-    resource:
-      name: cpu
-      target:
-        type: Utilization
-        averageUtilization: 50
+#apiVersion: autoscaling/v2
+#kind: HorizontalPodAutoscaler
+#metadata:
+#  name: struts
+#  namespace: struts
+#spec:
+#  scaleTargetRef:
+#    apiVersion: apps/v1
+#    kind: Deployment
+#    name: struts
+#  minReplicas: 1
+#  maxReplicas: 3
+#  metrics:
+#  - type: Resource
+#    resource:
+#      name: cpu
+#      target:
+#        type: Utilization
+#        averageUtilization: 50
